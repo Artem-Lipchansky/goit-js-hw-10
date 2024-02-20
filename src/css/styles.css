@@ -2,10 +2,12 @@ body {
   background-color: #fff;
 }
 
+
+
 .section {
   width: 1440px;
   height: 496px;
-  /* padding: 36px 929px 316px 156px; */
+  
 }
 
 .visually-hidden {
@@ -115,7 +117,7 @@ body {
   /* 150% */
 }
 
-/* snackbar ================================ */
+/* =============================== SNACKBAR ================================ */
 
 .title-input-field {
   font-family: 'Montserrat', sans-serif;
