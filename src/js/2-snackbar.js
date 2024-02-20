@@ -1,7 +1,7 @@
 
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-import svg from '../img/pngegg.png';
+
 
 document.addEventListener('DOMContentLoaded', () => {
  
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, delay);
       });
 
-      
+     
       notificationPromise
         .then(delay => {
           iziToast.show({
