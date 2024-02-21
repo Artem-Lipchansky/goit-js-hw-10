@@ -2,40 +2,29 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-
 document.addEventListener('DOMContentLoaded', () => {
- 
   const form = document.querySelector('.form');
 
-  
-  form.addEventListener('submit', event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-
-    
 
     const delayInput = form.querySelector('input[name="delay"]');
     const stateInputs = form.querySelectorAll('input[name="state"]');
     const selectedState = [...stateInputs].find(input => input.checked);
 
     if (delayInput && selectedState) {
-      
       const delay = parseInt(delayInput.value, 10);
 
-    
       const notificationPromise = new Promise((resolve, reject) => {
-        
         setTimeout(() => {
           if (selectedState.value === 'fulfilled') {
-            
             resolve(delay);
           } else {
-            
             reject(delay);
           }
         }, delay);
       });
 
-     
       notificationPromise
         .then(delay => {
           iziToast.show({
@@ -56,5 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
     }
-  });
-})
+  };
+
+  form.addEventListener('submit', handleSubmit);
+});

@@ -1,16 +1,12 @@
 
 import flatpickr from 'flatpickr';
-
 import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const myInput = document.getElementById('datetime-picker');
-
-
 let userSelectedDate;
 let timerInterval;
-
 
 const options = {
   enableTime: true,
@@ -36,7 +32,6 @@ const options = {
     } else {
       startBtn.disabled = false;
       userSelectedDate = selectedDate;
-     
     }
   },
 };
@@ -47,25 +42,29 @@ const startBtn = document.getElementById('start-btn');
 
 startBtn.addEventListener('click', () => {
   startBtn.disabled = true;
+
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+
   userSelectedDate = new Date(myInput.value);
-  timerInterval = setInterval(updateTimer, 1000);
+
+  if (!timerInterval) {
+    timerInterval = setInterval(updateTimer, 1000);
+  }
+
   updateTimer();
 });
 
 function convertMs(ms) {
-  
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
 
-
   const days = Math.floor(ms / day);
-  
   const hours = Math.floor((ms % day) / hour);
-  
   const minutes = Math.floor(((ms % day) % hour) / minute);
-  
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
 
   return { days, hours, minutes, seconds };
@@ -88,7 +87,6 @@ function updateTimer() {
   const timeDifference = userSelectedDate - currentTime;
 
   if (timeDifference <= 0) {
-    
     clearInterval(timerInterval);
     displayTimer({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   } else {
