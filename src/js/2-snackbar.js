@@ -1,11 +1,10 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form');
 
-  form.addEventListener('submit', event => {
+  function handleFormSubmit(event) {
     event.preventDefault();
 
     const delayInput = form.querySelector('input[name="delay"]');
@@ -45,5 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
     }
-  });
+  }
+
+  form.addEventListener('submit', handleFormSubmit);
 });
