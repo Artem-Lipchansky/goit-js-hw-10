@@ -1,11 +1,11 @@
-
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+// import svg from '../img/pngegg.png'; // Поміняйте на шлях до відповідного файлу
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form');
 
-  const handleSubmit = (event) => {
+  form.addEventListener('submit', event => {
     event.preventDefault();
 
     const delayInput = form.querySelector('input[name="delay"]');
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(delay => {
           iziToast.show({
-            message: `❎ Rejected promise in ${delay}ms`,
+            message: `❌ Rejected promise in ${delay}ms`,
             position: 'topCenter',
             timeout: 2000,
             backgroundColor: '#ef4040',
@@ -45,7 +45,5 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         });
     }
-  };
-
-  form.addEventListener('submit', handleSubmit);
+  });
 });

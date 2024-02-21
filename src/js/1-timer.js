@@ -42,17 +42,14 @@ const startBtn = document.getElementById('start-btn');
 
 startBtn.addEventListener('click', () => {
   startBtn.disabled = true;
+  userSelectedDate = new Date(myInput.value);
 
+ 
   if (timerInterval) {
     clearInterval(timerInterval);
   }
 
-  userSelectedDate = new Date(myInput.value);
-
-  if (!timerInterval) {
-    timerInterval = setInterval(updateTimer, 1000);
-  }
-
+  timerInterval = setInterval(updateTimer, 1000);
   updateTimer();
 });
 
@@ -98,4 +95,3 @@ function updateTimer() {
 function formatTimeValue(value) {
   return value < 10 ? `0${value}` : value;
 }
-
