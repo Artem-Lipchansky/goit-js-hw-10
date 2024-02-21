@@ -1,6 +1,6 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
-// import svg from '../img/pngegg.png'; // Поміняйте на шлях до відповідного файлу
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form');
