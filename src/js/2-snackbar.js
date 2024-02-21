@@ -4,6 +4,8 @@ import 'izitoast/dist/css/iziToast.min.css';
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.form');
 
+  form.addEventListener('submit', handleFormSubmit);
+
   function handleFormSubmit(event) {
     event.preventDefault();
 
@@ -26,25 +28,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
       notificationPromise
         .then(delay => {
-          iziToast.show({
-            message: `✅ Fulfilled promise in ${delay}ms`,
-            position: 'topCenter',
-            timeout: 2000,
-            backgroundColor: '#59a10d',
-            messageColor: '#fff',
-          });
+          showSuccessNotification(delay);
         })
         .catch(delay => {
-          iziToast.show({
-            message: `❌ Rejected promise in ${delay}ms`,
-            position: 'topCenter',
-            timeout: 2000,
-            backgroundColor: '#ef4040',
-            messageColor: '#fff',
-          });
+          showErrorNotification(delay);
         });
     }
   }
 
-  form.addEventListener('submit', handleFormSubmit);
+  function showSuccessNotification(delay) {
+    iziToast.show({
+      message: `✅ Fulfilled promise in ${delay}ms`,
+      position: 'topCenter',
+      timeout: 2000,
+      backgroundColor: '#59a10d',
+      messageColor: '#fff',
+    });
+  }
+
+  function showErrorNotification(delay) {
+    iziToast.show({
+      message: `❌ Rejected promise in ${delay}ms`,
+      position: 'topCenter',
+      timeout: 2000,
+      backgroundColor: '#ef4040',
+      messageColor: '#fff',
+    });
+  }
 });
